@@ -14,6 +14,11 @@ class JSON
 		header('Cache-Control: no-cache, must-revalidate');
 		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		header('Content-type: application/json');
+		$log = new \Monolog\Logger('name');
+		$log->pushHandler(new \Monolog\Handler\StreamHandler('/var/www/html/your.log', \Monolog\Logger::WARNING));
+		    $log->warning(self::jsonEncode($array));
+
+
 		echo self::jsonEncode($array);
 	}
 	
